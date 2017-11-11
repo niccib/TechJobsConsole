@@ -76,9 +76,17 @@ namespace TechJobsConsole
                         }
                     }
                     else
-                    {
+                    {                       
                         searchResults = JobData.FindByColumnAndValue(columnChoice,searchTerm);
-                        PrintJobs(searchResults);
+
+                        if (searchResults.Count == 0)
+                        {
+                            Console.WriteLine("Invalid Search Term");
+                        }
+                        else
+                        {
+                            PrintJobs(searchResults);
+                        }
                     }
                 }
             }
