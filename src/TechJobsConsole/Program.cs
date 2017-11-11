@@ -58,17 +58,26 @@ namespace TechJobsConsole
                     Console.WriteLine("\nSearch term: ");
                     string searchTerm = Console.ReadLine();
 
+
                     List<Dictionary<string, string>> searchResults;
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
                         searchResults = JobData.FindByValue(searchTerm);
-                        PrintJobs(searchResults);
+
+                        if (searchResults.Count == 0)
+                        {
+                            Console.WriteLine("Invalid Search Term");
+                        }
+                        else
+                        {
+                            PrintJobs(searchResults);
+                        }
                     }
                     else
                     {
-                        searchResults = JobData.FindByValue(searchTerm);
+                        searchResults = JobData.FindByColumnAndValue(columnChoice,searchTerm);
                         PrintJobs(searchResults);
                     }
                 }
